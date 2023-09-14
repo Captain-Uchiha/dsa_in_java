@@ -1,16 +1,17 @@
 package array;
 
 import java.util.Arrays;
+import java.util.function.BiConsumer;
 import java.util.function.BiFunction;
 
 public class LeftRotateArrayByD {
 
     @FunctionalInterface
-    interface TriFunction<T, U, V, R> {
-        R apply(T t, U u, V v);
+    interface TriConsumer<T, U, V> {
+       void   accept(T t, U u, V v);
     }
 
-    private static final TriFunction<int[],Integer,Integer, int[]> reverseArray = (arr, startPos, finalPos)->{
+    private static final TriConsumer<int[],Integer,Integer> reverseArray = (arr, startPos, finalPos)->{
 
         while(startPos<finalPos)
         {
@@ -18,22 +19,19 @@ public class LeftRotateArrayByD {
             arr[startPos++]= arr[finalPos];
             arr[finalPos--]= temp;
         }
-        return arr;
     };
 
-    public static BiFunction<int[],Integer,int[]> LeftRotateArrayByD = (arr,d)->{
-        reverseArray.apply(arr,0,d-1);
-        reverseArray.apply(arr,d,arr.length-1);
-        reverseArray.apply(arr,0,arr.length-1);
-
-        return arr;
+    public static BiConsumer<int[],Integer> LeftRotateArrayByD = (arr, d)->{
+        reverseArray.accept(arr,0,d-1);
+        reverseArray.accept(arr,d,arr.length-1);
+        reverseArray.accept(arr,0,arr.length-1);
     };
 
 
     public static void main(String[] args){
         int[] test1 = new int[]{1,2,3,4,5};
-
-        System.out.println(Arrays.toString(LeftRotateArrayByD.apply(test1, 2)));
+        LeftRotateArrayByD.accept(test1, 2);
+        System.out.println(Arrays.toString(test1));
         // solution -- 3,4,5,1,2
 
     }
