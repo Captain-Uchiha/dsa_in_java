@@ -2,7 +2,6 @@ package array;
 
 import java.util.Arrays;
 import java.util.function.BiConsumer;
-import java.util.function.BiFunction;
 
 public class LeftRotateArrayByD {
 
