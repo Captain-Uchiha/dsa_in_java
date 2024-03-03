@@ -30,13 +30,11 @@ public class SecondLargestElementInArray {
     }
 
 
+    public static void main(String[] args) {
 
-    public static void main(String[] args)
-    {
-
-        int[] testCase_1 = new int[]{10,5,8,20};
-        int[] testCase_2 = new int[]{20,10,20,8,12};
-        int[] testCase_3 = new int[]{10,10,10};
+        int[] testCase_1 = new int[]{10, 5, 8, 20};
+        int[] testCase_2 = new int[]{20, 10, 20, 8, 12};
+        int[] testCase_3 = new int[]{10, 10, 10};
 
         System.out.println(findSecondLargest(testCase_1));
         System.out.println(findSecondLargest(testCase_2));
