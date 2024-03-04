@@ -14,7 +14,11 @@ public class LinearSearch {
         }
         return -1;
     }
-
+    private static Integer linearSearchWithStreams(int n, Integer[] arr)
+    {
+        return    IntStream.range(0,arr.length).filter(i->arr[i]==n)
+                .findFirst().orElse(-1);
+    }
     public static void main(String[] args)
     {
         final Integer[] arr = {3,4,7,22,45,79,65,32,57,43,5,68,53,12,56};
@@ -22,6 +26,7 @@ public class LinearSearch {
         System.out.println("Enter the element to search ");
         int n = sc.nextInt();
         System.out.println("index of element is : "+linearSearchWithoutStreams(n,arr));
+        System.out.println("index of element is : "+linearSearchWithStreams(n,arr));
 
     }
 }
