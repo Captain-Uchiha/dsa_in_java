@@ -17,30 +17,39 @@ import java.util.List;
  */
 public class JosephusCircleAlgo {
 
-    int josephus(int n, int k) {
-        return -1;
+    static int  josephus(int n, int k) {
 
+        if(n==1)
+            return 1;
+
+        return  (josephus(n-1,k)+k-1)%n +1;
     }
 
+    static int  josephusUsingLoop(int n, int k) {
 
-    static List<Integer> findLuckyMan(int n, int curr, List<Integer> list, int k){
-
-        if(list.size()==n-1)
-            return list;
-        int negK = 0;
-        for(int i =curr;i<=n;i++){
-            if(!list.contains(i))
-                negK++;
-             if(negK==k)
-            {
-                list.add(i);
-            }
+        List<Integer> people = new ArrayList<>();
+        for(int i = 1;i<=n;i++)
+        {
+            people.add(i);
         }
-        return findLuckyMan(n,0,list,k);
+        int index = 0;
+        List<Integer> eliminationList = new ArrayList<>();
 
+        while (people.size()>1){
+
+            index = (index + k-1)%people.size();
+            int elimiated = people.remove(index);
+            eliminationList.add(elimiated);
+        }
+
+        System.out.println(eliminationList);
+        return people.get(0);
     }
+
+
 
     public static void main(String[] args) {
-        System.out.println( findLuckyMan(5,1,new ArrayList<>(),3));
+        System.out.println( josephusUsingLoop(7,3));
+        System.out.println( josephus(7,3));
     }
 }
